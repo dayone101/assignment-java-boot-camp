@@ -2,6 +2,8 @@ package bootcamp.java.assignment;
 
 import bootcamp.java.assignment.product.Product;
 import bootcamp.java.assignment.product.ProductRepository;
+import bootcamp.java.assignment.user.User;
+import bootcamp.java.assignment.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -15,9 +17,13 @@ public class ShoppingApiApplication {
 	@Autowired
 	private ProductRepository productRepository;
 
+	@Autowired
+	private UserRepository userRepository;
+
 	@PostConstruct
 	public void initialData() {
 		initialProduct();
+		initialUser();
 	}
 
 	@Transactional
@@ -76,6 +82,16 @@ public class ShoppingApiApplication {
 		productRepository.save(product7);
 		productRepository.save(product8);
 		productRepository.save(product9);
+	}
+
+	@Transactional
+	private void initialUser() {
+		User user1 = new User();
+		user1.setUsername("tester1");
+		user1.setAddress("bangkok");
+		user1.setWallet(700);
+
+		userRepository.save(user1);
 	}
 
 	public static void main(String[] args) {

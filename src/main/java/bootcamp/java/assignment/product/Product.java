@@ -1,22 +1,14 @@
 package bootcamp.java.assignment.product;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Product {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
-    @Column(nullable = false)
     private String name;
-
     private String detail;
-
-    @Column(nullable = false)
     private float price;
 
     public int getId() {

@@ -15,13 +15,22 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
+    public User findById(int id) {
+        Optional<User> result = userRepository.findById(id);
+        if (result.isPresent()) {
+            return result.get();
+        }
+
+        throw new UserIdNotFoundException(id);
+    }
+
     public User findByUsername(String username) {
         Optional<User> result = userRepository.findByUsername(username);
         if (result.isPresent()) {
             return result.get();
         }
 
-        throw new UserNotFoundException(username);
+        throw new UsernameNotFoundException(username);
     }
 
 }
